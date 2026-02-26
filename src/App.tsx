@@ -9,20 +9,25 @@ import TodayProblem from './pages/TodayProblem';
 type View = "loading" | "getstarted" | "selectrepo" | "today";
 
 export function App() {
-  const [view, setView] = useState<View>("loading");
+  const [view, setView] = useState<View>("getstarted");
 
-  useEffect(() => {
-    chrome.storage.local.get(["authed", "repo"], (result) => {
-      if (!result.authed) setView("getstarted");
-      else if (!result.repo) setView("selectrepo");
-      else setView("today");
-    });
-  }, []);
+  // useEffect(() => {
+  //   chrome.storage.local.get(["authed", "repo"], (result) => {
+  //     if (!result.authed) setView("getstarted");
+  //     else if (!result.repo) setView("selectrepo");
+  //     else setView("today");
+  //   });
+  // }, []);
 
   if (view === "loading") return <div className="p-4">Loading...</div>;
-  if (view === "getstarted") return <GetStarted onNext={() => setView("selectrepo")} />;
-  if (view === "selectrepo") return <SelectRepo onNext={() => setView("today")} />;
-  if (view === "today") return <TodayProblem />;
+  
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-background via-secondary/5 to-background p-4 flex items-center justify-center">
+      {view === "getstarted" && <GetStarted onNext={() => setView("selectrepo")} />}
+      {view === "selectrepo" && <SelectRepo onNext={() => setView("today")} />}
+      {view === "today" && <TodayProblem />}
+    </div>
+  );
 }
 
 export default App;

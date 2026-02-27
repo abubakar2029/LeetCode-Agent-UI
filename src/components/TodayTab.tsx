@@ -36,8 +36,15 @@ export default function TodayTab() {
 
     if (loading) {
         return (
-            <div className="flex items-center justify-center py-8">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+            <div className="flex flex-col items-center justify-center py-12 gap-4">
+                <div className="relative w-12 h-12">
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary to-accent opacity-20 animate-pulse"></div>
+                    <div className="absolute inset-2 rounded-full border-2 border-transparent border-t-primary border-r-primary border-b-accent animate-spin"></div>
+                </div>
+                <div className="text-center">
+                    <p className="text-sm font-medium text-foreground">Loading today's problem</p>
+                    <p className="text-xs text-muted-foreground mt-1">Preparing your challenge</p>
+                </div>
             </div>
         );
     }
@@ -51,24 +58,24 @@ export default function TodayTab() {
     }
 
     const difficultyColor = {
-        Easy: "bg-green-100 text-green-800",
-        Medium: "bg-yellow-100 text-yellow-800",
-        Hard: "bg-red-100 text-red-800",
+        Easy: "bg-success/15 text-success font-semibold",
+        Medium: "bg-warning/15 text-warning font-semibold",
+        Hard: "bg-destructive/15 text-destructive font-semibold",
     };
 
     return (
         <div className="space-y-4">
             {/* Problem Card */}
-            <div className="bg-secondary/50 rounded-lg p-4 border border-border">
+            <div className="bg-gradient-to-br from-secondary/60 to-secondary/30 rounded-xl p-5 border border-border hover:border-primary/30 transition-colors">
                 <div className="flex items-start justify-between gap-3">
                     <div className="flex-1">
-                        <h3 className="font-semibold text-foreground text-base leading-snug">
+                        <h3 className="font-bold text-foreground text-base leading-snug">
                             {problem.title}
                         </h3>
                         {problem.difficulty && (
-                            <div className="mt-3 flex gap-2">
+                            <div className="mt-4 flex gap-2">
                                 <span
-                                    className={`text-xs font-medium px-2 py-1 rounded ${
+                                    className={`text-xs font-semibold px-3 py-1.5 rounded-full ${
                                         difficultyColor[problem.difficulty]
                                     }`}
                                 >
@@ -81,8 +88,8 @@ export default function TodayTab() {
             </div>
 
             {/* Motivational Quote */}
-            <div className="bg-primary/5 border border-primary/20 rounded-lg p-3">
-                <p className="text-sm text-muted-foreground italic">
+            <div className="bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20 rounded-lg p-4">
+                <p className="text-sm text-foreground italic font-medium">
                     "Consistency beats intensity — one problem a day builds mastery."
                 </p>
             </div>
@@ -92,23 +99,23 @@ export default function TodayTab() {
                 href={problem.url}
                 target="_blank"
                 rel="noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-medium py-2.5 px-4 rounded-lg hover:bg-primary/90 transition-colors"
+                className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-primary to-primary/90 text-primary-foreground font-semibold py-3 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 active:scale-95 transition-all"
             >
                 Solve on LeetCode
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
             </a>
 
             {/* Stats */}
-            <div className="grid grid-cols-2 gap-3 pt-2 border-t border-border">
-                <div className="text-center">
-                    <p className="text-xs text-muted-foreground">Solved</p>
-                    <p className="text-lg font-semibold text-foreground">1,240K</p>
+            <div className="grid grid-cols-2 gap-3 pt-4 border-t border-border">
+                <div className="p-3 bg-secondary/50 rounded-lg text-center hover:bg-secondary transition-colors">
+                    <p className="text-xs font-medium text-muted-foreground">Solved</p>
+                    <p className="text-lg font-bold text-primary mt-1">1.2M</p>
                 </div>
-                <div className="text-center">
-                    <p className="text-xs text-muted-foreground">Success Rate</p>
-                    <p className="text-lg font-semibold text-foreground">32.8%</p>
+                <div className="p-3 bg-secondary/50 rounded-lg text-center hover:bg-secondary transition-colors">
+                    <p className="text-xs font-medium text-muted-foreground">Success Rate</p>
+                    <p className="text-lg font-bold text-primary mt-1">32.8%</p>
                 </div>
             </div>
         </div>

@@ -58,64 +58,53 @@ export default function TodayTab() {
     }
 
     const difficultyColor = {
-        Easy: "bg-success/15 text-success font-semibold",
-        Medium: "bg-warning/15 text-warning font-semibold",
-        Hard: "bg-destructive/15 text-destructive font-semibold",
+        Easy: "bg-success text-white font-bold text-xs",
+        Medium: "bg-warning text-white font-bold text-xs",
+        Hard: "bg-destructive text-white font-bold text-xs",
     };
 
     return (
         <div className="space-y-4">
-            {/* Problem Card */}
-            <div className="bg-gradient-to-br from-secondary/60 to-secondary/30 rounded-xl p-5 border border-border hover:border-primary/30 transition-colors">
-                <div className="flex items-start justify-between gap-3">
-                    <div className="flex-1">
-                        <h3 className="font-bold text-foreground text-base leading-snug">
-                            {problem.title}
-                        </h3>
-                        {problem.difficulty && (
-                            <div className="mt-4 flex gap-2">
-                                <span
-                                    className={`text-xs font-semibold px-3 py-1.5 rounded-full ${
-                                        difficultyColor[problem.difficulty]
-                                    }`}
-                                >
-                                    {problem.difficulty}
-                                </span>
-                            </div>
-                        )}
+            {/* Problem Card - Minimal */}
+            <div className="p-4 rounded-xl border border-border hover:border-primary/50 hover:shadow-lg hover:-translate-y-0.5 transition-all group cursor-default">
+                <h3 className="font-bold text-foreground text-base leading-snug group-hover:text-primary transition-colors">
+                    {problem.title}
+                </h3>
+                {problem.difficulty && (
+                    <div className="mt-3">
+                        <span
+                            className={`inline-block px-2.5 py-1 rounded-full text-xs font-bold ${
+                                difficultyColor[problem.difficulty]
+                            }`}
+                        >
+                            {problem.difficulty}
+                        </span>
                     </div>
-                </div>
+                )}
             </div>
 
-            {/* Motivational Quote */}
-            <div className="bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20 rounded-lg p-4">
-                <p className="text-sm text-foreground italic font-medium">
-                    "Consistency beats intensity — one problem a day builds mastery."
-                </p>
-            </div>
-
-            {/* CTA Button */}
+            {/* CTA Button - Energetic */}
             <a
                 href={problem.url}
                 target="_blank"
                 rel="noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-primary to-primary/90 text-primary-foreground font-semibold py-3 px-4 rounded-lg hover:shadow-lg hover:shadow-primary/30 active:scale-95 transition-all"
+                className="w-full inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-bold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-primary/40 hover:-translate-y-0.5 active:translate-y-0 transition-all group"
             >
-                Solve on LeetCode
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                Solve Now
+                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
             </a>
 
-            {/* Stats */}
-            <div className="grid grid-cols-2 gap-3 pt-4 border-t border-border">
-                <div className="p-3 bg-secondary/50 rounded-lg text-center hover:bg-secondary transition-colors">
-                    <p className="text-xs font-medium text-muted-foreground">Solved</p>
-                    <p className="text-lg font-bold text-primary mt-1">1.2M</p>
+            {/* Stats - Minimal */}
+            <div className="grid grid-cols-2 gap-3 pt-3">
+                <div className="p-3 rounded-lg border border-border/50 text-center hover:border-primary/50 hover:bg-secondary/30 transition-all">
+                    <p className="text-xs text-muted-foreground mb-1">Solved</p>
+                    <p className="font-bold text-primary text-lg">1.2M</p>
                 </div>
-                <div className="p-3 bg-secondary/50 rounded-lg text-center hover:bg-secondary transition-colors">
-                    <p className="text-xs font-medium text-muted-foreground">Success Rate</p>
-                    <p className="text-lg font-bold text-primary mt-1">32.8%</p>
+                <div className="p-3 rounded-lg border border-border/50 text-center hover:border-primary/50 hover:bg-secondary/30 transition-all">
+                    <p className="text-xs text-muted-foreground mb-1">Success</p>
+                    <p className="font-bold text-primary text-lg">32.8%</p>
                 </div>
             </div>
         </div>

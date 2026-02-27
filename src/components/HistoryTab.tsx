@@ -64,9 +64,9 @@ export default function HistoryTab() {
     }, [searchQuery, itemsToShow]);
 
     const difficultyColor = {
-        Easy: "bg-success/15 text-success font-semibold",
-        Medium: "bg-warning/15 text-warning font-semibold",
-        Hard: "bg-destructive/15 text-destructive font-semibold",
+        Easy: "bg-success text-white font-bold text-xs",
+        Medium: "bg-warning text-white font-bold text-xs",
+        Hard: "bg-destructive text-white font-bold text-xs",
     };
 
     const hasMore = filteredProblems.length < MOCK_PROBLEMS.filter((p) =>
@@ -111,48 +111,30 @@ export default function HistoryTab() {
                             href={problem.url}
                             target="_blank"
                             rel="noreferrer"
-                            className="flex items-center gap-3 p-3 bg-secondary/50 border border-border rounded-lg hover:bg-secondary hover:border-primary/40 hover:shadow-md active:scale-95 transition-all group"
+                            className="flex items-center gap-3 p-3 rounded-lg border border-border hover:border-primary/50 hover:bg-secondary/30 hover:-translate-y-0.5 active:translate-y-0 transition-all group"
                         >
-                            {/* Problem Number */}
-                            <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-primary/20 rounded-lg font-bold text-xs text-primary group-hover:bg-primary/30 transition-colors">
-                                {problem.number}
-                            </div>
-
-                            {/* Title */}
                             <div className="flex-1 min-w-0">
-                                <p className="text-sm font-medium text-foreground truncate group-hover:text-primary transition-colors">
+                                <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
                                     {problem.title}
                                 </p>
                             </div>
 
-                            {/* Difficulty Badge */}
-                            <span className={`text-xs font-semibold px-2.5 py-1.5 rounded-full flex-shrink-0 ${
+                            <span className={`px-2 py-1 rounded-full flex-shrink-0 ${
                                 difficultyColor[problem.difficulty]
                             }`}>
-                                {problem.difficulty}
+                                {problem.difficulty.charAt(0)}
                             </span>
 
-                            {/* Solved Indicator */}
                             {problem.solved && (
-                                <div className="flex-shrink-0 w-5 h-5 flex items-center justify-center bg-success/20 rounded-full">
-                                    <svg className="w-3 h-3 text-success" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                    </svg>
-                                </div>
+                                <svg className="w-4 h-4 text-success flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                </svg>
                             )}
-
-                            {/* External Link Icon */}
-                            <svg className="w-4 h-4 text-muted-foreground group-hover:text-primary flex-shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg>
                         </a>
                     ))
                 ) : (
                     <div className="text-center py-8">
-                        <svg className="w-8 h-8 text-muted-foreground/30 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <p className="text-muted-foreground text-sm font-medium">No problems match your search</p>
+                        <p className="text-muted-foreground text-sm font-medium">No problems found</p>
                     </div>
                 )}
             </div>
@@ -161,31 +143,11 @@ export default function HistoryTab() {
             {hasMore && (
                 <button
                     onClick={() => setItemsToShow(prev => prev + 5)}
-                    className="w-full py-2.5 px-4 bg-secondary/50 border border-border rounded-lg text-sm font-semibold text-foreground hover:bg-secondary hover:border-primary/40 active:scale-95 transition-all"
+                    className="w-full py-2.5 px-4 border border-border rounded-lg text-sm font-semibold text-foreground hover:border-primary/50 hover:bg-secondary/30 hover:-translate-y-0.5 active:translate-y-0 transition-all"
                 >
-                    Load More Problems
+                    Load More
                 </button>
             )}
-
-            {/* Empty State */}
-            {MOCK_PROBLEMS.length === 0 && (
-                <div className="text-center py-10">
-                    <svg className="w-10 h-10 text-muted-foreground/40 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6v6m0 0v6m0-6h6m0 0h6" />
-                    </svg>
-                    <p className="text-muted-foreground text-sm font-medium">No problems in history yet</p>
-                    <p className="text-xs text-muted-foreground/70 mt-1">Start solving to build your history</p>
-                </div>
-            )}
-
-            {/* Stats Footer */}
-            <div className="pt-3 border-t border-border text-xs text-muted-foreground text-center font-medium">
-                <p>
-                    {filteredProblems.length} of {MOCK_PROBLEMS.filter((p) =>
-                        p.title.toLowerCase().includes(searchQuery.toLowerCase())
-                    ).length} problems
-                </p>
-            </div>
         </div>
     );
 }

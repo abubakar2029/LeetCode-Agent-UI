@@ -59,81 +59,59 @@ export default function GetStarted({ onNext }: Props) {
 
 
     return (
-        <div className="w-96 bg-white rounded-2xl shadow-2xl overflow-hidden border border-border">
-            {/* Header */}
-            <div className="bg-gradient-to-r from-primary via-primary/90 to-primary/80 px-8 py-10">
-                <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-lg bg-primary-foreground/20 flex items-center justify-center">
-                        <svg className="w-6 h-6 text-primary-foreground" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                    </div>
-                    <h1 className="text-2xl font-bold text-primary-foreground">LeetCode Agent</h1>
+        <div className="w-96 bg-white rounded-2xl shadow-xl overflow-hidden border border-border">
+            {/* Header - Minimal & Clean */}
+            <div className="bg-gradient-to-br from-primary to-primary/95 px-8 py-12 relative overflow-hidden">
+                {/* Animated background gradient */}
+                <div className="absolute inset-0 opacity-20">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-accent rounded-full blur-3xl animate-pulse"></div>
+                    <div className="absolute bottom-0 left-0 w-24 h-24 bg-accent/50 rounded-full blur-2xl animate-pulse" style={{animationDelay: '1s'}}></div>
                 </div>
-                <p className="text-primary-foreground/90 text-sm">Master algorithms with daily consistent practice</p>
+                
+                <div className="relative">
+                    <h1 className="text-3xl font-bold text-primary-foreground mb-1">LeetCode Agent</h1>
+                    <p className="text-primary-foreground/85 text-sm font-medium">One problem daily</p>
+                </div>
             </div>
 
-            {/* Content */}
-            <div className="px-8 py-8 space-y-6">
-                <div className="space-y-2 text-left">
-                    <h2 className="text-xl font-bold text-foreground">Get Started</h2>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                        Connect your GitHub account to sync your LeetCode progress and start solving one problem daily.
-                    </p>
+            {/* Content - Simplified */}
+            <div className="px-8 py-8 space-y-7">
+                <div className="text-left">
+                    <h2 className="text-lg font-bold text-foreground mb-1">Connect GitHub</h2>
+                    <p className="text-xs text-muted-foreground">Sync your progress instantly</p>
                 </div>
 
-                {/* Features */}
-                <div className="space-y-3">
-                    <div className="flex gap-4 items-start text-left">
-                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/15 flex items-center justify-center mt-0.5">
-                            <svg className="w-3.5 h-3.5 text-primary font-bold" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                            </svg>
-                        </div>
-                        <div>
-                            <p className="text-sm font-semibold text-foreground">Daily Problems</p>
-                            <p className="text-xs text-muted-foreground">Fresh challenge every morning</p>
-                        </div>
+                {/* Features - Minimal */}
+                <div className="space-y-2">
+                    <div className="flex gap-3 items-center text-left">
+                        <div className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0"></div>
+                        <p className="text-xs font-medium text-foreground">Fresh daily challenges</p>
                     </div>
-                    <div className="flex gap-4 items-start text-left">
-                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/15 flex items-center justify-center mt-0.5">
-                            <svg className="w-3.5 h-3.5 text-primary font-bold" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                            </svg>
-                        </div>
-                        <div>
-                            <p className="text-sm font-semibold text-foreground">Track Progress</p>
-                            <p className="text-xs text-muted-foreground">Monitor your growth over time</p>
-                        </div>
+                    <div className="flex gap-3 items-center text-left">
+                        <div className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0"></div>
+                        <p className="text-xs font-medium text-foreground">Track your streak</p>
                     </div>
-                    <div className="flex gap-4 items-start text-left">
-                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/15 flex items-center justify-center mt-0.5">
-                            <svg className="w-3.5 h-3.5 text-primary font-bold" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                            </svg>
-                        </div>
-                        <div>
-                            <p className="text-sm font-semibold text-foreground">Search History</p>
-                            <p className="text-xs text-muted-foreground">Review all problems solved</p>
-                        </div>
+                    <div className="flex gap-3 items-center text-left">
+                        <div className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0"></div>
+                        <p className="text-xs font-medium text-foreground">Solve history</p>
                     </div>
                 </div>
 
-                {/* Button */}
+                {/* Button - Energetic */}
                 <button
                     onClick={handleAuth}
-                    className="w-full bg-primary text-primary-foreground font-semibold py-3 px-4 rounded-lg hover:bg-primary/90 active:scale-95 transition-all flex items-center justify-center gap-2 shadow-lg shadow-primary/20"
+                    className="w-full bg-primary text-primary-foreground font-bold py-3 px-4 rounded-xl hover:shadow-lg hover:shadow-primary/40 hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center justify-center gap-2 group"
                 >
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="w-4 h-4 group-hover:rotate-12 transition-transform" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M10 0a10 10 0 1 0 10 10A10 10 0 0 0 10 0zm3.5 7.5h-2v2h-1v-2h-2v-1h2v-2h1v2h2v1z" />
                     </svg>
                     Sign in with GitHub
                 </button>
             </div>
 
-            {/* Footer */}
-            <div className="px-8 py-4 bg-secondary/40 border-t border-border text-center">
-                <p className="text-xs text-muted-foreground font-medium">Secure. Fast. Free. Forever.</p>
+            {/* Footer - Clean */}
+            <div className="px-8 py-3 text-center">
+                <p className="text-xs text-muted-foreground">Free forever</p>
             </div>
         </div>
     );

@@ -38,50 +38,40 @@ export default function SelectRepo({ onNext }: Props) {
   };
 
   return (
-    <div className="w-96 bg-white rounded-2xl shadow-2xl overflow-hidden border border-border">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-primary via-primary/90 to-primary/80 px-8 py-8">
-        <h1 className="text-xl font-bold text-primary-foreground">Select Repository</h1>
-        <p className="text-primary-foreground/80 text-sm mt-2">Link your GitHub repository with LeetCode progress</p>
+    <div className="w-96 bg-white rounded-2xl shadow-xl overflow-hidden border border-border">
+      {/* Header - Minimal */}
+      <div className="bg-gradient-to-br from-primary to-primary/95 px-8 py-8 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-0 right-0 w-28 h-28 bg-accent rounded-full blur-2xl animate-pulse"></div>
+        </div>
+        
+        <div className="relative">
+          <h1 className="text-2xl font-bold text-primary-foreground">Repository</h1>
+          <p className="text-primary-foreground/85 text-xs font-medium mt-0.5">Choose to sync</p>
+        </div>
       </div>
 
       {/* Content */}
       <div className="px-8 py-6">
         {repos.length > 0 ? (
-          <ul className="space-y-3">
+          <ul className="space-y-2">
             {repos.map((repo, i) => (
               <li key={i}>
                 <button
                   onClick={() => handleSelect(repo)}
-                  className="w-full text-left p-4 bg-secondary/50 border border-border rounded-lg hover:bg-secondary hover:border-primary transition-all flex items-center gap-3 group active:scale-95"
+                  className="w-full text-left p-3 rounded-lg border border-border hover:border-primary/50 hover:bg-secondary/30 hover:-translate-y-0.5 active:translate-y-0 transition-all group font-medium text-sm text-foreground group-hover:text-primary"
                 >
-                  <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/15 flex items-center justify-center group-hover:bg-primary/25 transition-colors">
-                    <svg className="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M2 4a2 2 0 012-2h6a2 2 0 012 2v12a1 1 0 100 2h-6a2 2 0 01-2-2V4z" />
-                    </svg>
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold text-foreground truncate group-hover:text-primary transition-colors">
-                      {repo}
-                    </p>
-                    <p className="text-xs text-muted-foreground mt-0.5">GitHub repository</p>
-                  </div>
-                  <svg className="w-4 h-4 text-muted-foreground group-hover:text-primary flex-shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
+                  {repo}
                 </button>
               </li>
             ))}
           </ul>
         ) : (
           <div className="text-center py-12">
-            <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-secondary/50 mb-3">
-              <svg className="w-6 h-6 text-primary animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m0 0h6" />
-              </svg>
+            <div className="relative w-10 h-10 mx-auto mb-3">
+              <div className="absolute inset-0 rounded-full border-2 border-transparent border-t-primary border-r-primary animate-spin"></div>
             </div>
-            <p className="text-sm font-medium text-foreground">Fetching repositories</p>
-            <p className="text-xs text-muted-foreground mt-1">Please wait...</p>
+            <p className="text-sm font-medium text-foreground">Loading repos</p>
           </div>
         )}
       </div>

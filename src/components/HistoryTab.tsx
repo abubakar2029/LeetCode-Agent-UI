@@ -64,9 +64,9 @@ export default function HistoryTab() {
     }, [searchQuery, itemsToShow]);
 
     const difficultyColor = {
-        Easy: "bg-green-100 text-green-800",
-        Medium: "bg-yellow-100 text-yellow-800",
-        Hard: "bg-red-100 text-red-800",
+        Easy: "bg-green-500/10 text-green-700 border border-green-500/30",
+        Medium: "bg-amber-500/10 text-amber-700 border border-amber-500/30",
+        Hard: "bg-red-500/10 text-red-700 border border-red-500/30",
     };
 
     const hasMore = filteredProblems.length < MOCK_PROBLEMS.filter((p) =>
@@ -74,7 +74,7 @@ export default function HistoryTab() {
     ).length;
 
     return (
-        <div className="space-y-4">
+        <div className="space-y-5">
             {/* Search Bar */}
             <div className="relative">
                 <svg
@@ -96,14 +96,14 @@ export default function HistoryTab() {
                     value={searchQuery}
                     onChange={(e) => {
                         setSearchQuery(e.target.value);
-                        setItemsToShow(5); // Reset pagination on search
+                        setItemsToShow(5);
                     }}
-                    className="w-full pl-9 pr-4 py-2.5 bg-secondary border border-border rounded-lg text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20"
+                    className="w-full pl-9 pr-4 py-2.5 bg-secondary/60 border border-border rounded-lg text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all"
                 />
             </div>
 
             {/* Problems List */}
-            <div className="space-y-2">
+            <div className="space-y-3">
                 {filteredProblems.length > 0 ? (
                     filteredProblems.map((problem) => (
                         <a
@@ -111,22 +111,22 @@ export default function HistoryTab() {
                             href={problem.url}
                             target="_blank"
                             rel="noreferrer"
-                            className="flex items-center gap-3 p-3 bg-secondary/50 border border-border rounded-lg hover:bg-secondary hover:border-primary/50 transition-all group"
+                            className="flex items-center gap-3 p-4 bg-secondary/60 border border-border rounded-xl hover:bg-secondary/80 hover:border-primary/50 transition-all group"
                         >
                             {/* Problem Number */}
-                            <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-primary/10 rounded font-semibold text-xs text-primary">
+                            <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-primary/15 rounded-lg font-bold text-xs text-primary">
                                 {problem.number}
                             </div>
 
                             {/* Title */}
                             <div className="flex-1 min-w-0">
-                                <p className="text-sm font-medium text-foreground truncate group-hover:text-primary transition-colors">
+                                <p className="text-sm font-semibold text-foreground truncate group-hover:text-primary transition-colors">
                                     {problem.title}
                                 </p>
                             </div>
 
                             {/* Difficulty Badge */}
-                            <span className={`text-xs font-medium px-2.5 py-1 rounded flex-shrink-0 ${
+                            <span className={`text-xs font-semibold px-2.5 py-1 rounded-full flex-shrink-0 ${
                                 difficultyColor[problem.difficulty]
                             }`}>
                                 {problem.difficulty}
@@ -134,8 +134,8 @@ export default function HistoryTab() {
 
                             {/* Solved Indicator */}
                             {problem.solved && (
-                                <div className="flex-shrink-0 w-5 h-5 flex items-center justify-center bg-green-100 rounded">
-                                    <svg className="w-3 h-3 text-green-700" fill="currentColor" viewBox="0 0 20 20">
+                                <div className="flex-shrink-0 w-5 h-5 flex items-center justify-center bg-green-500/10 rounded-full border border-green-500/30">
+                                    <svg className="w-3 h-3 text-green-600" fill="currentColor" viewBox="0 0 20 20">
                                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                     </svg>
                                 </div>
@@ -148,7 +148,7 @@ export default function HistoryTab() {
                         </a>
                     ))
                 ) : (
-                    <div className="text-center py-6">
+                    <div className="text-center py-8">
                         <p className="text-muted-foreground text-sm">No problems match your search</p>
                     </div>
                 )}
@@ -158,7 +158,7 @@ export default function HistoryTab() {
             {hasMore && (
                 <button
                     onClick={() => setItemsToShow(prev => prev + 5)}
-                    className="w-full py-2.5 px-4 bg-secondary border border-border rounded-lg text-sm font-medium text-foreground hover:bg-secondary/80 hover:border-primary/50 transition-all"
+                    className="w-full py-2.5 px-4 bg-secondary/60 border border-border rounded-lg text-sm font-semibold text-foreground hover:bg-secondary/80 hover:border-primary/50 transition-all"
                 >
                     Load More
                 </button>
@@ -172,7 +172,7 @@ export default function HistoryTab() {
             )}
 
             {/* Stats Footer */}
-            <div className="pt-2 border-t border-border text-xs text-muted-foreground text-center">
+            <div className="pt-3 border-t border-border text-xs text-muted-foreground text-center font-medium">
                 <p>
                     Showing {filteredProblems.length} of {MOCK_PROBLEMS.filter((p) =>
                         p.title.toLowerCase().includes(searchQuery.toLowerCase())

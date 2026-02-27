@@ -16,6 +16,11 @@ export function App() {
   //     else setView("today");
   //   });
   // }, []);
+  useEffect(() => {
+    setTimeout(() => {
+      setView("getstarted");
+    }, 2000);
+  }, []);
 
   if (view === "loading") return <div className="p-4">Loading...</div>;
   

@@ -14,7 +14,11 @@ export default function GetStarted({ onNext }: Props) {
     //         if (res.authed && res.token) onNext();
     //     });
     // }, []);
-
+    useEffect(() => {
+        setTimeout(() => {
+                onNext();
+        }, 2000);
+    }, []);
     const handleAuth = async () => {
         chrome.identity.launchWebAuthFlow(
             {

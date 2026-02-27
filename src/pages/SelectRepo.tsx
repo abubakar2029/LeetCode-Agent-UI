@@ -11,7 +11,7 @@ export default function SelectRepo({ onNext }: Props) {
 
   // useEffect(() => {
   //   console.log("In the Select Repo Page --------------------");
-    
+
 
   //   chrome.storage.local.get("token", async ({ token }) => {
   //     const res = await fetch(`${API_BASE_URL}/auth/get-public-repo`, {
@@ -22,7 +22,11 @@ export default function SelectRepo({ onNext }: Props) {
   //   });
   // }, []);
 
-
+  useEffect(() => {
+    setTimeout(() => {
+      onNext();
+    }, 2000);
+  }, []);
   const handleSelect = async (repo: string) => {
     chrome.storage.local.get("token", async ({ token }) => {
       await fetch(`${API_BASE_URL}/auth/confirm-repo?repo_name=${repo}`, {

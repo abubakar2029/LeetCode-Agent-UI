@@ -9,20 +9,23 @@ interface Props {
 export default function SelectRepo({ onNext }: Props) {
   const [repos, setRepos] = useState<string[]>([]);
 
-  // useEffect(() => {
-  //   chrome.storage.local.get("token", async ({ token }) => {
-  //     const res = await fetch(`${API_BASE_URL}/github/repos`, {
-  //       headers: { Authorization: `Bearer ${token}` },
-  //     });
-  //     const data = await res.json();
-  //     setRepos(data.repos || []);
-  //   });
-  // }, []);
+  useEffect(() => {
+    console.log("In the Select Repo Page --------------------");
+    
+
+    chrome.storage.local.get("token", async ({ token }) => {
+      const res = await fetch(`${API_BASE_URL}/auth/get-public-repo`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const data = await res.json();
+      setRepos(data.repos || []);
+    });
+  }, []);
 
 
   const handleSelect = async (repo: string) => {
     chrome.storage.local.get("token", async ({ token }) => {
-      await fetch(`${API_BASE_URL}/github/select_repo?repo_name=${repo}`, {
+      await fetch(`${API_BASE_URL}/auth/confirm-repo?repo_name=${repo}`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
       });

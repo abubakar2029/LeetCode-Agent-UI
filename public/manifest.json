@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "LeetCode Agent",
-  "version": "1.0",
+  "version": "2.0",
   "description": "Daily LeetCode recommendations with GitHub analysis and integration",
   "action": {
     "default_popup": "index.html"
@@ -17,6 +17,6 @@
   ],
   "host_permissions": [
     "https://api.github.com/*",
-    "http://localhost:8000/*"
+    "http://localhost:5173/*"
   ]
 }

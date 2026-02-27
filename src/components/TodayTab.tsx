@@ -13,15 +13,25 @@ export default function TodayTab() {
 
     useEffect(() => {
         setLoading(true);
-        // Simulate API call
-        setTimeout(() => {
-            setProblem({
-                title: "Two Sum",
-                url: "https://leetcode.com/problems/two-sum",
-                difficulty: "Easy",
-            });
-            setLoading(false);
-        }, 500);
+    fetch(`${API_BASE_URL}/problem/today`)
+            .then((res) => res.json())
+            .then((data: Problem) => setProblem(data))
+            //  in case of API failure, use a default problem
+            .catch(() =>
+                setProblem({
+                    title: "Two Sum",
+                    url: "https://leetcode.com/problems/two-sum",
+                })
+            );
+        // API call Simulation
+        // setTimeout(() => {
+        //     setProblem({
+        //         title: "Two Sum",
+        //         url: "https://leetcode.com/problems/two-sum",
+        //         difficulty: "Easy",
+        //     });
+        //     setLoading(false);
+        // }, 500);
     }, []);
 
     if (loading) {

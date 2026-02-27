@@ -8,16 +8,17 @@ interface Props {
 export default function GetStarted({ onNext }: Props) {
 
 
-    // useEffect(() => {
-    //     chrome.storage.local.get(["authed", "token"], (res) => {
-    //         if (res.authed && res.token) onNext();
-    //     });
-    // }, []);
+    // an additional check 
+    useEffect(() => {
+        chrome.storage.local.get(["authed", "token"], (res) => {
+            if (res.authed && res.token) onNext();
+        });
+    }, []);
 
     const handleAuth = async () => {
         chrome.identity.launchWebAuthFlow(
             {
-                url: `${API_BASE_URL}/auth/github`,
+                url: `${API_BASE_URL}/auth/login?client_id=${chrome.runtime.id}&redirect_uri=${encodeURIComponent(chrome.identity.getRedirectURL())}`,
                 interactive: true
             },
             (redirectUrl) => {

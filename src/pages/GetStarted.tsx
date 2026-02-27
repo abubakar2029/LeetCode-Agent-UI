@@ -9,11 +9,11 @@ export default function GetStarted({ onNext }: Props) {
 
 
     // an additional check 
-    useEffect(() => {
-        chrome.storage.local.get(["authed", "token"], (res) => {
-            if (res.authed && res.token) onNext();
-        });
-    }, []);
+    // useEffect(() => {
+    //     chrome.storage.local.get(["authed", "token"], (res) => {
+    //         if (res.authed && res.token) onNext();
+    //     });
+    // }, []);
 
     const handleAuth = async () => {
         chrome.identity.launchWebAuthFlow(

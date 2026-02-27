@@ -11,28 +11,28 @@ export default function TodayTab() {
     const [problem, setProblem] = useState<Problem | null>(null);
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        setLoading(true);
-    fetch(`${API_BASE_URL}/problem/today`)
-            .then((res) => res.json())
-            .then((data: Problem) => setProblem(data))
-            //  in case of API failure, use a default problem
-            .catch(() =>
-                setProblem({
-                    title: "Two Sum",
-                    url: "https://leetcode.com/problems/two-sum",
-                })
-            );
-        // API call Simulation
-        // setTimeout(() => {
-        //     setProblem({
-        //         title: "Two Sum",
-        //         url: "https://leetcode.com/problems/two-sum",
-        //         difficulty: "Easy",
-        //     });
-        //     setLoading(false);
-        // }, 500);
-    }, []);
+    // useEffect(() => {
+    //     setLoading(true);
+    // fetch(`${API_BASE_URL}/problem/today`)
+    //         .then((res) => res.json())
+    //         .then((data: Problem) => setProblem(data))
+    //         //  in case of API failure, use a default problem
+    //         .catch(() =>
+    //             setProblem({
+    //                 title: "Two Sum",
+    //                 url: "https://leetcode.com/problems/two-sum",
+    //             })
+    //         );
+    //     // API call Simulation
+    //     // setTimeout(() => {
+    //     //     setProblem({
+    //     //         title: "Two Sum",
+    //     //         url: "https://leetcode.com/problems/two-sum",
+    //     //         difficulty: "Easy",
+    //     //     });
+    //     //     setLoading(false);
+    //     // }, 500);
+    // }, []);
 
     if (loading) {
         return (

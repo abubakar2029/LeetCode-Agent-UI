@@ -1,23 +1,24 @@
-@import "tailwindcss";
-
-@theme {
-  --color-primary: #4f46e5;
-  --color-primary-foreground: #ffffff;
-  --color-secondary: #f5f3ff;
-  --color-secondary-foreground: #1e1b4b;
-  --color-background: #ffffff;
-  --color-foreground: #0f172a;
-  --color-border: #e0e7ff;
-  --color-muted-foreground: #64748b;
-  --color-accent: #06b6d4;
-  --color-success: #10b981;
-  --color-warning: #f59e0b;
-  --color-destructive: #ef4444;
-
-  --radius: 0.5rem;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
+  :root {
+    --color-primary: rgb(79 70 229);
+    --color-primary-foreground: rgb(255 255 255);
+    --color-secondary: rgb(245 243 255);
+    --color-secondary-foreground: rgb(30 27 75);
+    --color-background: rgb(255 255 255);
+    --color-foreground: rgb(15 23 42);
+    --color-border: rgb(224 231 255);
+    --color-muted-foreground: rgb(100 116 139);
+    --color-accent: rgb(6 182 212);
+    --color-success: rgb(16 185 129);
+    --color-warning: rgb(245 158 11);
+    --color-destructive: rgb(239 68 68);
+    --radius: 0.5rem;
+  }
+
   html, body {
     @apply bg-background text-foreground;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
